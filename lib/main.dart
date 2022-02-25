@@ -20,19 +20,6 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       home: BmiScreen(),
 
-      //this is my first update
-      //this is my second update
-      //third update from laptop
-      //fourth update from pc
-      //fifth update frp pc
-      //sixth update from laptop
-      //final update from pc
-      //222222222 from laptop
-      //2222222222
-      //2222222222222222222
-      //mohamed shaaban
-      //keep it sipmle
-
 
 
     );
