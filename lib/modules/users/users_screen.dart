@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:remontada2/models/user/users_model.dart';
 
-class UserModel{
-  final int id;
-  final String name;
-  final String phone;
 
-  UserModel({
-   required this.id,
-   required this.name,
-   required this.phone,
-});
-}
 
 class UsersScreen extends StatelessWidget {
 

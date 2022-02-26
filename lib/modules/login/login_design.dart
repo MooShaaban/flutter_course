@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:remontada2/shared/components/components.dart';
 
 class LoginDesign extends StatelessWidget{
+
+
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +20,11 @@ class LoginDesign extends StatelessWidget{
         child: Container(
 
           width: double.infinity,
-          padding: EdgeInsetsDirectional.all(8.0),
+          padding: EdgeInsetsDirectional.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 150.0,),
+              SizedBox(height: 130.0,),
               Text(
                 'Login',
                 style: TextStyle(
@@ -27,8 +32,9 @@ class LoginDesign extends StatelessWidget{
                   fontWeight: FontWeight.w700
                 ),
               ),
-              SizedBox(height: 20.0,),
+              SizedBox(height: 30.0,),
               TextFormField(
+                controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value){
                   print(value);
@@ -45,6 +51,7 @@ class LoginDesign extends StatelessWidget{
               ),
               SizedBox(height: 10.0,),
               TextFormField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -56,15 +63,13 @@ class LoginDesign extends StatelessWidget{
                 ),
               ),
               SizedBox(height: 10.0,),
-              MaterialButton(
-                minWidth: double.infinity,
-                child: Text('Login',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                  color: Colors.deepPurple,
-                  onPressed: (){}
+              defaultButton(
+                  text: 'Login',
+                  function: (){
+                    print(emailController.text) ;
+                    print(passwordController.text);
+                  },
+                backgroundColor: Colors.deepPurpleAccent,
               ),
               SizedBox(height: 10.0,),
               Row(

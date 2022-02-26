@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:remontada2/home_screen.dart';
-import 'package:remontada2/users_screen.dart';
-import 'bmi_result_screen.dart';
-import 'bmi_screen.dart';
-import 'counter_screen.dart';
-import 'login_design.dart';
-import 'messenger.dart';
+import 'package:remontada2/modules/home/home_screen.dart';
+import 'package:remontada2/modules/users/users_screen.dart';
+import 'modules/bmi_result/bmi_result_screen.dart';
+import 'modules/bmi/bmi_screen.dart';
+import 'modules/counter/counter_screen.dart';
+import 'modules/login/login_design.dart';
+import 'modules/messenger/messenger.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget{
   {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BmiScreen(),
+      home: LoginDesign(),
 
 
     );
