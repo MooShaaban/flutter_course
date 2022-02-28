@@ -6,7 +6,12 @@ class ArchivedTasks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Archived Tasks'),
+      child: Text(
+          'Archived Tasks',
+        style: TextStyle(
+          fontSize: 50.0,
+        ),
+      ),
     );
   }
 }
