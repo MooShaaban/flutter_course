@@ -65,3 +65,55 @@ Widget defaultFormFeild({
 
   ),
 );
+
+
+
+Widget buildTaskItem({
+  required Map model,
+}){
+  return Padding(
+    padding: const EdgeInsetsDirectional.only(bottom: 15.0,top: 5.0),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CircleAvatar(
+          radius: 30.0,
+          child: Text(
+            '${model['time']}',
+            style: TextStyle(
+              fontSize: 13.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white
+            ),
+          ),
+          backgroundColor: Colors.blue,
+        ),
+        SizedBox(width: 15.0,),
+        Container(
+          height: 60.0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '${model['title']}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17.0,
+                ),
+              ),
+              SizedBox(height: 5.0,),
+              Text(
+                '${model['date']}',
+                style: TextStyle(
+                    color: Colors.grey
+                ),
+
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}

@@ -3,6 +3,7 @@ import 'package:remontada2/modules/archived_todo/archived_todo.dart';
 import 'package:remontada2/modules/done_todo/done_todo.dart';
 import 'package:remontada2/modules/tasks_todo/new_tasks.dart';
 import 'package:remontada2/shared/components/components.dart';
+import 'package:remontada2/shared/components/constants.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:intl/intl.dart';
 
@@ -25,6 +26,7 @@ class _TodoHomeState extends State<TodoHome> {
   var nameController = TextEditingController();
   var timeController = TextEditingController();
   var dateController = TextEditingController();
+
 
   List<String> title = [
     'New Tasks',
@@ -57,11 +59,19 @@ class _TodoHomeState extends State<TodoHome> {
 
             if(isBottomSheetShown){
               if(formKey.currentState!.validate()){
-                Navigator.pop(context);
-                isBottomSheetShown = !isBottomSheetShown;
-                setState(() {
-                  fab = Icon(Icons.add);
+                insertToDatabase(
+                  title: nameController.text,
+                  date: dateController.text,
+                  time: timeController.text,
+                ).then((value) {
+                  Navigator.pop(context);
+                  isBottomSheetShown = false;
+                  setState(() {
+                    fab = Icon(Icons.add);
+                  });
                 });
+
+
               }
 
 
@@ -132,8 +142,14 @@ class _TodoHomeState extends State<TodoHome> {
                   ),
                 ),
               )
-              );
-              isBottomSheetShown = !isBottomSheetShown;
+              ).closed.then((value) {
+                // Navigator.pop(context);
+                isBottomSheetShown = false;
+                setState(() {
+                  fab = Icon(Icons.add);
+                });
+              });
+              isBottomSheetShown = true;
               setState(() {
                 fab = Icon(Icons.check);
               });
@@ -191,15 +207,15 @@ class _TodoHomeState extends State<TodoHome> {
           
         ],
       ),
-      body: screen[current],
+      body: tasks.length == 0? Center(child: CircularProgressIndicator()) : screen[current],
       
     );
   }
 
 
-  Future<String> getName() async  {
-    return 'Mohamed Shaaban';
-  }
+  // Future<String> getName() async  {
+  //   return 'Mohamed Shaaban';
+  // }
 
   void createDatabase() async {
      database = await openDatabase(
@@ -218,13 +234,23 @@ class _TodoHomeState extends State<TodoHome> {
       },
       onOpen: (database){
           print('Database opened');
+          getDataFromDatabase(database).then((value) {
+            tasks = value;
+            print(tasks);
+          });
+
       }
     );
   }
-  void insertToDatabase(){
-    database!.transaction((txn) async{
+
+  Future insertToDatabase ({
+    required String title,
+    required String date,
+    required String time,
+}) async{
+    return await database!.transaction((txn) async{
       try{
-        int id = await  txn.rawInsert('INSERT INTO tasks (title, date, time, status) VALUES ("first task","14 May","midnight","done")');
+        int id = await  txn.rawInsert('INSERT INTO tasks (title, date, time, status) VALUES ("$title","$date","$time","new")');
         print('$id inserted successfully');
       }catch(error){
         print('error while inserting new record is ${error.toString()}');
@@ -233,6 +259,12 @@ class _TodoHomeState extends State<TodoHome> {
 
 
     });
+  }
+
+
+  Future <List<Map>> getDataFromDatabase(database) async {
+
+    return await database.rawQuery('SELECT * FROM tasks');
   }
 
 
