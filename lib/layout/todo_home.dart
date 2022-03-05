@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:remontada2/modules/archived_todo/archived_todo.dart';
 import 'package:remontada2/modules/done_todo/done_todo.dart';
 import 'package:remontada2/modules/tasks_todo/new_tasks.dart';
+import 'package:remontada2/shared/components/components.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:intl/intl.dart';
 
 
 class TodoHome extends StatefulWidget {
@@ -16,6 +18,13 @@ class _TodoHomeState extends State<TodoHome> {
 
   int current = 0;
   Database? database;
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+  var formKey = GlobalKey<FormState>();
+  bool isBottomSheetShown = false;
+  Icon fab = Icon(Icons.add);
+  var nameController = TextEditingController();
+  var timeController = TextEditingController();
+  var dateController = TextEditingController();
 
   List<String> title = [
     'New Tasks',
@@ -38,12 +47,101 @@ class _TodoHomeState extends State<TodoHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      key: scaffoldKey,
       appBar: AppBar(
         title: Text(title[current]),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          insertToDatabase();
+        onPressed: ()  {
+
+            if(isBottomSheetShown){
+              if(formKey.currentState!.validate()){
+                Navigator.pop(context);
+                isBottomSheetShown = !isBottomSheetShown;
+                setState(() {
+                  fab = Icon(Icons.add);
+                });
+              }
+
+
+
+
+
+            }
+            else{
+              scaffoldKey.currentState!.showBottomSheet((context) => Container(
+                color: Colors.grey[200],
+                padding: EdgeInsetsDirectional.all(20.0),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      defaultFormFeild(
+                          controller: nameController,
+                          onSubmitted: (value){},
+                          validator:(String? value){
+                            if(value!.isEmpty){
+                              return 'Name must not be empty';
+                            }
+                          } ,
+                          label: 'Task name',
+                          prefix:Icon(Icons.text_fields)
+                      ),
+                      SizedBox(height: 10.0,),
+                      defaultFormFeild(
+                          controller: timeController,
+                          onSubmitted: (value){},
+                          validator: (String? value){
+                            if(value!.isEmpty){
+                              return 'Time must not be empty';
+                            }
+                          },
+                          label: 'Time',
+                          prefix: Icon(Icons.watch_later_outlined),
+                          keyboard: TextInputType.datetime,
+                          ontap: (){
+                            showTimePicker(context: context, initialTime: TimeOfDay.now()).then((value) => timeController.text= value!.format(context));
+                          }
+                      ),
+                      SizedBox(height: 10.0,),
+                      defaultFormFeild(
+                          controller: dateController,
+                          onSubmitted: (value){},
+                          validator: (String? value){
+                            if(value!.isEmpty){
+                              return 'Date must not be empty';
+                            }
+                          },
+                          label: 'Date',
+                          prefix: Icon(Icons.date_range_outlined),
+                        keyboard: TextInputType.number,
+                        ontap: (){
+                            showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate:DateTime.parse("2022-07-27") ,
+                            ).then((value) {
+                              dateController.text = DateFormat.yMMMd().format(value!);
+                            });
+                        }
+                      ),
+                    ],
+                  ),
+                ),
+              )
+              );
+              isBottomSheetShown = !isBottomSheetShown;
+              setState(() {
+                fab = Icon(Icons.check);
+              });
+
+            }
+
+
+
         }
 
       //       try{
@@ -66,7 +164,7 @@ class _TodoHomeState extends State<TodoHome> {
       // });
       // },
         ,
-        child: Icon(Icons.add),
+        child: fab,
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index){

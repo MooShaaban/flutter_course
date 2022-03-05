@@ -39,10 +39,11 @@ Widget defaultFormFeild({
   void Function(String)? onChanged,
   required void Function(String)? onSubmitted,
   required String? Function(String?) validator,
-  required String inText,
+  required String label,
   required Icon prefix,
   IconButton? suffix ,
   bool isPassword = false,
+  void Function()? ontap,
 
 })
 
@@ -53,9 +54,11 @@ Widget defaultFormFeild({
   onChanged: onChanged,
   onFieldSubmitted: onSubmitted,
   validator: validator,
+  onTap: ontap,
+
 
   decoration: InputDecoration(
-    labelText: inText,
+    labelText: label,
     border: OutlineInputBorder(),
     prefixIcon: prefix,
     suffixIcon: suffix,

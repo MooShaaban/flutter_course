@@ -58,7 +58,7 @@ class _LoginDesignState extends State<LoginDesign> {
                       }
                       return null;
                     },
-                    inText: 'Email Address',
+                    label: 'Email Address',
                     prefix: Icon(Icons.mail),
                     keyboard: TextInputType.emailAddress,
                 ),
@@ -73,7 +73,7 @@ class _LoginDesignState extends State<LoginDesign> {
                         return 'Password must not be empty';
                       }
                     },
-                    inText: 'Password',
+                    label: 'Password',
                     prefix: Icon(Icons.lock),
                     isPassword: showPassword,
                     keyboard: TextInputType.visiblePassword,
