@@ -61,7 +61,6 @@ class MainStreamBuilding extends StatelessWidget {
               ),
               const SizedBox(height: 30.0,),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     children: [
@@ -76,10 +75,14 @@ class MainStreamBuilding extends StatelessWidget {
                   ),
                   SizedBox(width: 25.0,),
                   Column(
-
                     children: [
                       buildFloorItem(floorNumber: 5, floorName: 'Fifth floor',onTap: (){}),
-
+                      SizedBox(height: 20.0,),
+                      buildFloorItem(floorNumber: 6, floorName: 'Sixth floor',onTap: (){}),
+                      SizedBox(height: 20.0,),
+                      buildFloorItem(floorNumber: 7, floorName: 'Seventh floor',onTap: (){}),
+                      SizedBox(height: 20.0,),
+                      buildFloorItem(floorNumber: 8, floorName: 'Eighth floor',onTap: (){}),
                     ],
                   ),
                 ],
@@ -146,3 +149,53 @@ class MainStreamBuilding extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
