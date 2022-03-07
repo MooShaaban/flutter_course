@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:remontada2/modules/home/home_screen.dart';
 import 'package:remontada2/modules/users/users_screen.dart';
-import 'package:remontada2/modules/sws_home.dart';
+import 'package:remontada2/sws_project/sws_home.dart';
 import 'layout/todo_home.dart';
 import 'modules/bmi_result/bmi_result_screen.dart';
 import 'modules/bmi/bmi_screen.dart';
