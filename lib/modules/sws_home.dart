@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:remontada2/modules/mainstream_building.dart';
 
 import 'credit_building.dart';
 
@@ -12,6 +13,10 @@ class SWSHome extends StatefulWidget {
 class _SWSHomeState extends State<SWSHome> {
 
   int screenIndex = 0;
+  List<Widget> screen =[
+    CreditBuilding(),
+    MainStreamBuilding(),
+  ];
 
 
   @override
@@ -36,7 +41,7 @@ class _SWSHomeState extends State<SWSHome> {
             });
 
           },
-          fixedColor: Colors.indigo[300],
+          fixedColor: Colors.deepPurple[500],
           items: [
             BottomNavigationBarItem(
               icon: Container(
@@ -63,7 +68,7 @@ class _SWSHomeState extends State<SWSHome> {
           ],
         ),
       ),
-      body: creditBuilding(),
+      body: screen[screenIndex],
 
     );
   }

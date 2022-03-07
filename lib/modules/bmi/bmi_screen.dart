@@ -34,34 +34,39 @@ class _BmiScreenState extends State<BmiScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          isMale = true;
-                        });
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 15.0,
+                      child: GestureDetector(
 
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: isMale?Colors.blue :Colors.grey[400],
-                            borderRadius: BorderRadius.circular(20.0)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image(
-                              image: AssetImage('assets/images/male22.png'),
-                              height: 85.0,
-                              width: 85.0,
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            Text(
-                              'Male',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 25.0),
-                            ),
-                          ],
+                        onTap: (){
+                          setState(() {
+                            isMale = true;
+                          });
+
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: isMale?Colors.blue :Colors.grey[400],
+                              borderRadius: BorderRadius.circular(20.0)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image(
+                                image: AssetImage('assets/images/male22.png'),
+                                height: 85.0,
+                                width: 85.0,
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                'Male',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 25.0),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
