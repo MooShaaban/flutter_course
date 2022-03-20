@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:remontada2/sws_project/mainstream_building.dart';
+import 'package:remontada2/sws_project/visitor/mainstream_building.dart';
 
 import 'credit_building.dart';
 

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CreditBuilding extends StatelessWidget {
+class CreditBuilding extends StatefulWidget {
   const CreditBuilding({Key? key}) : super(key: key);
+
+  @override
+  State<CreditBuilding> createState() => _CreditBuildingState();
+}
+
+class _CreditBuildingState extends State<CreditBuilding> {
+   bool animation = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +35,7 @@ class CreditBuilding extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -80,6 +87,22 @@ class CreditBuilding extends StatelessWidget {
                       buildFloorItem(floorNumber: 5, floorName: 'Fifth floor',onTap: (){}),
                     ],
                   ),
+
+                  // AnimatedOpacity(
+                  //   opacity: animation? 1 : 0,
+                  //   duration: const Duration( milliseconds: 500),
+                  //   child: Column(
+                  //     children: [
+                  //       buildFloorItem(floorNumber: 1, floorName: 'First floor',onTap: (){}),
+                  //       SizedBox(height: 20.0,),
+                  //       buildFloorItem(floorNumber: 2, floorName: 'Second floor',onTap: (){}),
+                  //       SizedBox(height: 20.0,),
+                  //       buildFloorItem(floorNumber: 3, floorName: 'Third floor',onTap: (){}),
+                  //       SizedBox(height: 20.0,),
+                  //       buildFloorItem(floorNumber: 9, floorName: 'I am here',onTap: (){}),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
 
