@@ -45,7 +45,7 @@ class _RequestsState extends State<Requests> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image(
-                  image: AssetImage('assets/images/bin0.jpg'),
+                  image: AssetImage('assets/images/Bin1.png'),
                   width: 110.0,
                   height: 110.0,
                   fit: BoxFit.contain,

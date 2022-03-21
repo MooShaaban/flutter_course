@@ -25,7 +25,7 @@ class _BinDescriptionState extends State<BinDescription> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: Image(image: AssetImage('assets/images/bin0.jpg'),
+                child: Image(image: AssetImage('assets/images/Bin1.png'),
                   height: 320.0,
                 ),
               ),
@@ -93,17 +93,13 @@ class _BinDescriptionState extends State<BinDescription> {
                       child: Container(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         decoration: BoxDecoration(
-                          color: Colors.red,
+                          color: Colors.teal,
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: MaterialButton(
-                          onPressed: (){
-                            setState(() {
-                              percent = 0.0;
-                            });
-                          },
+                          onPressed: (){},
                           child: Text(
-                            'Reset capacity',
+                            'On my way',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -115,7 +111,38 @@ class _BinDescriptionState extends State<BinDescription> {
                   ),
 
                 ],
-              )
+              ),
+              SizedBox(height: 20.0,),
+              Padding(
+                padding: const EdgeInsets.only(left: 5.0),
+                child: Material(
+                  elevation: 8.0,
+                  color: Colors.transparent,
+                  child: Container(
+                    width: double.infinity,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: MaterialButton(
+                      onPressed: (){
+                        setState(() {
+                          percent = 0.0;
+                        });
+                      },
+                      child: Text(
+                        'Reset capacity',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
 
 
             ],
