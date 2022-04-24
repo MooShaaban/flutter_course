@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget{
         splashTransition: SplashTransition.fadeTransition,
         splashIconSize: 500,
         animationDuration: Duration(seconds: 4),
-        nextScreen: CounterScreen(),
+        nextScreen: TodoHome(),
         splash: Container(
           height: 300,
           width: 300,
