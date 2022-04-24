@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rounded_progress_bar/flutter_icon_rounded_progress_bar.dart';
-import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
-import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 import 'package:remontada2/sws_project/cast/bin_description.dart';
 
 class AllBins extends StatefulWidget {
@@ -64,20 +61,20 @@ class _AllBinsState extends State<AllBins> {
                     SizedBox(height: 15.0,),
                     Text('Capacity 70%'),
                     SizedBox(height: 10.0,),
-                    Container(
-                      width: 220.0,
-                      child: RoundedProgressBar(
-                        percent: 70.0,
-                        height: 22.0,
-                        style: RoundedProgressBarStyle(
-                            colorProgress: Colors.teal,
-                            colorProgressDark: Colors.teal.shade600,
-                            backgroundProgress: Colors.teal.shade100
-
-
-                        ),
-                      ),
-                    ),
+                    // Container(
+                    //   width: 220.0,
+                    //   child: RoundedProgressBar(
+                    //     percent: 70.0,
+                    //     height: 22.0,
+                    //     style: RoundedProgressBarStyle(
+                    //         colorProgress: Colors.teal,
+                    //         colorProgressDark: Colors.teal.shade600,
+                    //         backgroundProgress: Colors.teal.shade100
+                    //
+                    //
+                    //     ),
+                    //   ),
+                    // ),
 
                   ],
                 )

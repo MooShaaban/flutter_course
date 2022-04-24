@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
-import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
+
 
 class BinDescriptionVisitor extends StatelessWidget {
 
@@ -33,23 +32,23 @@ class BinDescriptionVisitor extends StatelessWidget {
               SizedBox(height: 10.0,),
               Text('More Info.'),
               SizedBox(height: 10.0,),
-              RoundedProgressBar(
-                childCenter: Text(
-                  '$percent%',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                height: 35.0,
-                percent: percent,
-                style: RoundedProgressBarStyle(
-                    colorProgress: Colors.teal,
-                    colorProgressDark: Colors.teal.shade600,
-                    backgroundProgress: Colors.teal.shade100
-                ),
-
-              ),
+              // RoundedProgressBar(
+              //   childCenter: Text(
+              //     '$percent%',
+              //     style: TextStyle(
+              //         color: Colors.black,
+              //         fontWeight: FontWeight.bold
+              //     ),
+              //   ),
+              //   height: 35.0,
+              //   percent: percent,
+              //   style: RoundedProgressBarStyle(
+              //       colorProgress: Colors.teal,
+              //       colorProgressDark: Colors.teal.shade600,
+              //       backgroundProgress: Colors.teal.shade100
+              //   ),
+              //
+              // ),
               SizedBox(height: 15.0,),
               Padding(
                 padding: const EdgeInsets.only(left: 5.0),

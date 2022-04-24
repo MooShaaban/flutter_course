@@ -33,7 +33,6 @@ dependencies:
     sdk: flutter
   sqflite:
   intl: ^0.17.0
-  flutter_rounded_progress_bar: 0.2.0
   animated_splash_screen: ^1.2.0
 
   # The following adds the Cupertino Icons font to your application.

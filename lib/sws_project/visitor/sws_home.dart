@@ -57,22 +57,14 @@ class _SWSHomeState extends State<SWSHome> {
                     height: 0.0,
                     width: 0.0,
                   ),
-                  title:Text(
-                    'Credit Building',
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                  ),
+                  label: 'Credit Building',
                 ),
                 BottomNavigationBarItem(
                     icon:  Container(
                       height: 0.0,
                       width: 0.0,
                     ),
-                    title: Text(
-                      'Mainstream Building',
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                    )
+                    label: 'Mainstream Building',
                 ),
               ],
             ),

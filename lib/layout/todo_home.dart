@@ -73,11 +73,6 @@ class _TodoHomeState extends State<TodoHome> {
 
 
               }
-
-
-
-
-
             }
             else{
               scaffoldKey.currentState!.showBottomSheet((context) => Container(
@@ -243,6 +238,8 @@ class _TodoHomeState extends State<TodoHome> {
     );
   }
 
+
+
   Future insertToDatabase ({
     required String title,
     required String date,
@@ -255,11 +252,9 @@ class _TodoHomeState extends State<TodoHome> {
       }catch(error){
         print('error while inserting new record is ${error.toString()}');
       }
-
-
-
     });
   }
+
 
 
   Future <List<Map>> getDataFromDatabase(database) async {
