@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:remontada2/shared/components/components.dart';
+import 'package:remontada2/shared/cubit/cubit.dart';
+import 'package:remontada2/shared/cubit/states.dart';
+
 
 class DoneTasks extends StatelessWidget {
   const DoneTasks({Key? key}) : super(key: key);
@@ -6,13 +11,22 @@ class DoneTasks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Center(
-      child: Text(
-        'Done Tasks',
-        style: TextStyle(
-          fontSize: 50.0
-        ),
-      ),
+    return BlocConsumer <AppCubit, AppStates>(
+      listener:(context, state){} ,
+      builder: (context, state) {
+        return Container(
+          padding: EdgeInsetsDirectional.all(15.0),
+          child: ListView.separated(
+            itemBuilder: (context, index) => buildTaskItem(model: AppCubit.get(context).doneTasks[index],context: context),
+            separatorBuilder:(context, index) =>Container(
+              height: 1.0,
+              width: double.infinity,
+              color: Colors.grey,
+            ) ,
+            itemCount: AppCubit.get(context).doneTasks.length,
+          ),
+        );
+      },
     );
   }
 }

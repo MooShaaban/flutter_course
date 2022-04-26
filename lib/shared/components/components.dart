@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:remontada2/shared/cubit/cubit.dart';
 
 Widget defaultButton ({
   required String text,
@@ -68,52 +69,79 @@ Widget defaultFormFeild({
 
 
 
-Widget buildTaskItem({
-  required Map model,
-}){
-  return Padding(
-    padding: const EdgeInsetsDirectional.only(bottom: 15.0,top: 5.0),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CircleAvatar(
-          radius: 30.0,
-          child: Text(
-            '${model['time']}',
-            style: TextStyle(
-              fontSize: 13.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white
+Widget buildTaskItem({required Map model, context}){
+
+  return Dismissible(
+    key: Key(model['id'].toString()),
+    onDismissed: (direction){
+      AppCubit.get(context).deleteDatabase(model['id']);
+    },
+    child: Padding(
+      padding: const EdgeInsetsDirectional.only(bottom: 15.0,top: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            radius: 30.0,
+            child: Text(
+              '${model['time']}',
+              style: TextStyle(
+                fontSize: 13.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
+              ),
+            ),
+            backgroundColor: Colors.blue,
+          ),
+          SizedBox(width: 15.0,),
+          Expanded(
+            child: Container(
+              height: 60.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '${model['title']}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17.0,
+                    ),
+                  ),
+                  SizedBox(height: 5.0,),
+                  Text(
+                    '${model['date']}',
+                    style: TextStyle(
+                        color: Colors.grey
+                    ),
+
+                  ),
+                ],
+              ),
             ),
           ),
-          backgroundColor: Colors.blue,
-        ),
-        SizedBox(width: 15.0,),
-        Container(
-          height: 60.0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '${model['title']}',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17.0,
-                ),
-              ),
-              SizedBox(height: 5.0,),
-              Text(
-                '${model['date']}',
-                style: TextStyle(
-                    color: Colors.grey
-                ),
-
-              ),
-            ],
+          SizedBox(width: 15.0,),
+          IconButton(
+              onPressed: (){
+                AppCubit.get(context).updateDatabase(status: 'done', id: model['id']);
+              },
+              icon: Icon(
+                  Icons.check_box,
+                color: Colors.green,
+              )
           ),
-        ),
-      ],
+          SizedBox(width: 15.0,),
+          IconButton(
+              onPressed: (){
+                AppCubit.get(context).updateDatabase(status: 'archived', id: model['id']);
+              },
+              icon: Icon(
+                  Icons.archive,
+                color: Colors.grey,
+              )
+          ),
+        ],
+      ),
     ),
   );
 }

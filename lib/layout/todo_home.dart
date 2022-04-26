@@ -14,11 +14,9 @@ import 'package:intl/intl.dart';
 class TodoHome extends StatelessWidget  {
 
 
-  Database? database;
+
   var scaffoldKey = GlobalKey<ScaffoldState>();
   var formKey = GlobalKey<FormState>();
-  bool isBottomSheetShown = false;
-  Icon fab = Icon(Icons.add);
   var nameController = TextEditingController();
   var timeController = TextEditingController();
   var dateController = TextEditingController();
@@ -28,7 +26,7 @@ class TodoHome extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit(),
+      create: (context) => AppCubit()..createDatabase(),
       child: BlocConsumer<AppCubit, AppStates>(
           listener:(context, state){},
           builder: (context, state)=> Scaffold(
@@ -40,16 +38,16 @@ class TodoHome extends StatelessWidget  {
             floatingActionButton: FloatingActionButton(
               onPressed: ()  {
 
-                if(isBottomSheetShown){
+                if(AppCubit.get(context).isBottomSheetShown){
                   if(formKey.currentState!.validate()){
-                    insertToDatabase(
+                    AppCubit.get(context).insertToDatabase(
                       title: nameController.text,
                       date: dateController.text,
                       time: timeController.text,
                     ).then((value) {
                       Navigator.pop(context);
-                      isBottomSheetShown = false;
-                      fab = Icon(Icons.add);
+                      AppCubit.get(context).isBottomSheetShown = false;
+                      AppCubit.get(context).fab = Icon(Icons.add);
                     });
                   }
                 }
@@ -118,11 +116,9 @@ class TodoHome extends StatelessWidget  {
                   )
                   ).closed.then((value) {
                     // Navigator.pop(context);
-                    isBottomSheetShown = false;
-                    fab = Icon(Icons.add);
+                    AppCubit.get(context).changeBottomSheetState(isShow: false, fabs: Icon(Icons.add));
                   });
-                  isBottomSheetShown = true;
-                  fab = Icon(Icons.check);
+                  AppCubit.get(context).changeBottomSheetState(isShow: true, fabs: Icon(Icons.check));
                 }
               }
 
@@ -146,7 +142,7 @@ class TodoHome extends StatelessWidget  {
               // });
               // },
               ,
-              child: fab,
+              child: AppCubit.get(context).fab,
             ),
             bottomNavigationBar: BottomNavigationBar(
               onTap: (index){
@@ -184,55 +180,6 @@ class TodoHome extends StatelessWidget  {
   //   return 'Mohamed Shaaban';
   // }
 
-  void createDatabase() async {
-    database = await openDatabase(
-        'todo.db',
-        version: 1,
-        onCreate: (database, version)  {
-          print('Database Created');
-          database.execute(
-            'CREATE TABLE tasks(id INTEGER PRIMARY KEY,title TEXT ,date TEXT,time TEXT,status TEXT )',
-
-          ).then((value) {
-            print('Table created');
-          }).catchError((error){
-            print('Error is $error');
-          });
-        },
-        onOpen: (database){
-          print('Database opened');
-          getDataFromDatabase(database).then((value) {
-            tasks = value;
-            print(tasks);
-          });
-
-        }
-    );
-  }
-
-
-
-  Future insertToDatabase ({
-    required String title,
-    required String date,
-    required String time,
-  }) async{
-    return await database!.transaction((txn) async{
-      try{
-        int id = await  txn.rawInsert('INSERT INTO tasks (title, date, time, status) VALUES ("$title","$date","$time","new")');
-        print('$id inserted successfully');
-      }catch(error){
-        print('error while inserting new record is ${error.toString()}');
-      }
-    });
-  }
-
-
-
-  Future <List<Map>> getDataFromDatabase(database) async {
-
-    return await database.rawQuery('SELECT * FROM tasks');
-  }
 
 
 }
